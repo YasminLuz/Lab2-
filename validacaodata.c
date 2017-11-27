@@ -17,7 +17,7 @@ int bissexto(int ano, int mes, int dia){
   int status;
   
    if(((ano%4)==0) && ((ano%100)!=0)||(ano%400)==0){
-   	 //verificaÁ„o do ano bissexto
+   	 //verifica√ß√£o do ano bissexto
    	   	 status = 1;
 	 
    }else {
@@ -107,7 +107,7 @@ return 0;
 
 void main(){
 	
-	int ano, ano1, ano2, ano3, r, r1, r2,r3; //validaÁ„o do ano
+	int ano, ano1, ano2, ano3, r, r1, r2,r3; //valida√ß√£o do ano
 	dma data;
 	
 	printf("Data (dd/mm/aaaa): \n");
@@ -135,7 +135,7 @@ void main(){
 
 	}else {	
 
-          bissexto; //verificaÁ„o de ano bissexto ou n„o bissexto
+          bissexto; //verifica√ß√£o de ano bissexto ou n√£o bissexto
           fevereiro(data.ano, data.mes, data.dia, bissexto(data.ano, data.mes, data.dia));
      	  mes30(data.ano, data.mes, data.dia);
       	  mes31(data.ano, data.mes, data.dia);
