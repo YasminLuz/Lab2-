@@ -5,10 +5,7 @@
 
 /*
 Programa que o usuário informa um texto de até 250 caracteres e programa mostra quantas vezes a letra digitada aparece no texto	
-
-
 */
-
 
 void main(){
 	char texto[LIMITE];
@@ -24,9 +21,8 @@ void main(){
 	for(x;x < LIMITE;x++){
 	   
 		if (letra == texto[x])
-				cont++;
-			
-		
+		    cont++;
+
 	}
 	
 	printf("A letra %c aparece %d vezes", letra,cont-1);
