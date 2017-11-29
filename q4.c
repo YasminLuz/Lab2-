@@ -10,7 +10,7 @@ Programa que o usuário informa um texto de até 250 caracteres e programa mos
 void main(){
 	char texto[LIMITE];
 	char letra; 
-	int x = 0,y = 0, cont;
+	int x = 0, cont = 0;
 	
 	printf("Texto: ");
 	fgets(texto, 250, stdin);
