@@ -4,7 +4,7 @@
 #define LIMITE 250
 
 /*
-Programa que o usuário informa um texto de até 250 caracteres e programa mostra quantas vezes a letra digitada aparece no texto	
+Programa que oÂ usuÃ¡rioÂ informa um texto de atÃ© 250 caracteres e programa mostra quantas vezes a letra digitada aparece no texto	
 
 
 */
@@ -16,7 +16,7 @@ void main(){
 	int x = 0,y = 0, cont;
 	
 	printf("Palavra: ");
-	fgets(palavra, 256, stdin);
+	fgets(palavra, 250, stdin);
 	//fflush(stdin);
 	printf("\nPesquisar pela letra: ");
 	scanf(" %c", &letra);
