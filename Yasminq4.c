@@ -16,7 +16,10 @@ void main(){
 	int x = 0,y = 0, cont;
 	
 	printf("Palavra: ");
-	scanf(" %250s %c", &palavra, &letra);
+	fgets(palavra, 256, stdin);
+	//fflush(stdin);
+	printf("\nPesquisar pela letra: ");
+	scanf(" %c", &letra);
 	
 	for(x;x < LIMITE;x++){
 		//for(y = x; y < LIMITE; y++){
