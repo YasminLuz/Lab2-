@@ -26,10 +26,10 @@ main(){
 	               }
 	                
 	        	
-			    case 4: printf("Ate a proxima"); break;
+		case 4: printf("Ate a proxima"); break;
           
-          default: printf("A opcao digitada nao existe");
-     }
+                default: printf("A opcao digitada nao existe");
+         }
 		
 	} while(op != 4);
 	
