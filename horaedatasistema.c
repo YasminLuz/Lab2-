@@ -9,8 +9,8 @@ main(){
 		printf("######## MENU ########\n \n");
 		printf("1 - Data do sistema \n"
 		       "2 - Hora do sistema \n"
-           "3 - Somar dois numeros\n"
-			     "4 - Sair \n");
+                       "3 - Somar dois numeros\n"
+		       "4 - Sair \n");
 	  scanf("%d", &op);
 	    
 	    switch(op){
