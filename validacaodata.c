@@ -135,7 +135,7 @@ void main(){
 
 	}else {	
 
-          bissexto; //verificação de ano bissexto ou não bissexto
+          bissexto(data.ano, data.mes, data.dia); //verificação de ano bissexto ou não bissexto
           fevereiro(data.ano, data.mes, data.dia, bissexto(data.ano, data.mes, data.dia));
      	  mes30(data.ano, data.mes, data.dia);
       	  mes31(data.ano, data.mes, data.dia);
