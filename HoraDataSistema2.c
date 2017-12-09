@@ -18,7 +18,7 @@ do{
 	        case 2: printf ("HORA: %s \n",  __TIME__); break;
 	        	
 	        case 3: {
-			        printf("Digite dois numeros: ");
+			printf("Digite dois numeros: ");
 	                scanf("%d %d",&n1, &n2);
 	                printf("%d \n", n1+n2);
 	                break;
@@ -27,8 +27,8 @@ do{
 	        	
 		case 4: printf("Ate a proxima"); break;
          
-               default: printf("A opcao digitada nao existe");
-		}
+                default: printf("A opcao digitada nao existe");
+          }
 		
 	}while(op != 4);
 	
