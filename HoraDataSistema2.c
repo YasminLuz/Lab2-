@@ -30,7 +30,7 @@ do{
                 default: printf("A opcao digitada nao existe");
           }
 		
-	}while(op != 4);
+	}while(op != 4); 
 	
 	
 }
