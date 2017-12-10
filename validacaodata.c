@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#define TAM 4
 int bissexto(int ano, int mes, int dia);
 int fevereiro (int ano, int mes, int dia, int status);
 int mes30(int ano, int mes, int dia);
@@ -46,6 +45,7 @@ main(){
       
 }
 
+#define TAM 4
 int entrada(int ano){//verifica digitos de entrada do ano
 	
 	int x,i,date, anodig[TAM]= { }, resto[TAM] = { }, cont=0;
