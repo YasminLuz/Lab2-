@@ -5,6 +5,7 @@ int bissexto(int ano, int mes, int dia);
 int fevereiro (int ano, int mes, int dia, int status);
 int mes30(int ano, int mes, int dia);
 int mes31(int ano, int mes, int dia);
+int entrada(int ano);
 
 
 
@@ -15,7 +16,6 @@ typedef struct{
 
 main(){
 	
-	int ano[TAM] = { }, resto[TAM] = { }, x, i,date; //validação do ano
 	dma data;
 	
 	printf("-------Consulta de datas------- \n");
@@ -23,20 +23,16 @@ main(){
 	printf("Data (dd/mm/aaaa): \n");
 	scanf(" %d/%d/%d",&data.dia,&data.mes,&data.ano);
 	
-	date = data.ano;
 	
-	for(x= 1000, i=0;(x < TAM) && (i < 4); x/=10, i++){//Verifica se é um ano válido
-		ano[i] = date/x;
-		resto[i] = date%x;
-		date = resto[i];
-    }
-	 
-	if(data.mes > 12)
+	if(data.dia > 31 || data.dia < 1)
+	   printf("\nDigite um dia valido \n");
+
+	if(data.mes > 12 || data.mes < 1)
 	   printf("\nDigite um mes valido \n");
-	   
-			
-	if(resto[TAM]!=0)
+	   			
+	if(entrada(data.ano)==0)
 	  printf("\nDigite um ano valido \n");
+	  
 	else{
 
           bissexto(data.ano, data.mes, data.dia); //verificação de ano bissexto ou não bissexto
@@ -50,6 +46,37 @@ main(){
       
 }
 
+int entrada(int ano){//verifica digitos de entrada do ano
+	
+	int x,i,date, anodig[TAM]= { }, resto[TAM] = { }, cont=0;
+	
+	
+	date = ano;
+		
+	if (ano>999 && ano<=9999){
+		
+	  for(x= 1000, i=0;(x > 0) && (i < 4); x/=10, i++){
+		anodig[i] = date/x;
+		resto[i] = date%x;
+		date = resto[i];
+		cont++;
+      }
+      
+    }else if(ano<=99 && ano>9){
+    	
+       for(x= 10, i=0;(x > 0) && (i < 2); x/=10, i++){
+		anodig[i] = date/x;
+		resto[i] = date%x;
+		date = resto[i];
+		cont++;
+       }	
+      
+	}else{
+	    cont=0;
+    }
+    
+	return cont;
+}
 
 
 
@@ -83,7 +110,7 @@ int fevereiro(int ano, int mes, int dia, int status){
 			    }else if (dia == 29) {
 			    	printf("\nAno bissexto \n A data %d/%d/%d e valida \n",dia, mes, ano);	
 				}else{
-                 	printf("\nDia invalido \n");
+                 	printf("\nO dia nao e correspondente ao mes\n");
 				}
 			 	break;
 			   }
@@ -92,7 +119,7 @@ int fevereiro(int ano, int mes, int dia, int status){
 		   		 if (dia > 0 && dia <= 28){
                  	printf("\nA data %d/%d/%d e valida \n",dia, mes, ano);
                  }else {
-                 	printf("\nDia invalido \n");
+                 	printf("\nO dia nao e correspondente ao mes \n");
 				 }
 			    break;
 		       }
@@ -116,7 +143,7 @@ int mes31(int ano, int mes, int dia){
     		  if (dia > 0 && dia <= 31){
       			 printf("\nA data %d/%d/%d e valida \n", dia,mes, ano);
    			  }else {
-       			printf("\nO dia nao e valido \n");
+       			printf("\nO dia nao e correspondente ao mes \n");
      		  }
      		 
 			  break;
@@ -137,7 +164,7 @@ int mes30(int ano, int mes, int dia){
 			  if (dia > 0 && dia <= 30){
      	 		 printf("\nA data %d/%d/%d e valida \n", dia, mes, ano);
      		  }else {
-     			 printf("\nO dia nao e valido \n");
+     			 printf("\nO dia nao e  correspondente ao mes \n");
      		  }
      		  
      		  break;
@@ -146,3 +173,4 @@ int mes30(int ano, int mes, int dia){
   
 return 0;
 }
+
