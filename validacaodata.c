@@ -1,11 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
-int bissexto(int ano, int mes, int dia);
+int entrada(int ano);
+int bissexto(int ano);
 int fevereiro (int ano, int mes, int dia, int status);
 int mes30(int ano, int mes, int dia);
 int mes31(int ano, int mes, int dia);
-int entrada(int ano);
-
 
 
 
@@ -21,8 +20,7 @@ main(){
 	
 	printf("Data (dd/mm/aaaa): \n");
 	scanf(" %d/%d/%d",&data.dia,&data.mes,&data.ano);
-	
-	
+		
 	if(data.dia > 31 || data.dia < 1)
 	   printf("\nDigite um dia valido \n");
 
@@ -34,8 +32,8 @@ main(){
 	  
 	else{
 
-          bissexto(data.ano, data.mes, data.dia); //verificação de ano bissexto ou não bissexto
-          fevereiro(data.ano, data.mes, data.dia, bissexto(data.ano, data.mes, data.dia));
+          bissexto(data.ano); //verificação de ano bissexto ou não bissexto
+          fevereiro(data.ano, data.mes, data.dia, bissexto(data.ano));
      	  mes30(data.ano, data.mes, data.dia);
       	  mes31(data.ano, data.mes, data.dia);
       	 
@@ -46,7 +44,7 @@ main(){
 }
 
 #define TAM 4
-int entrada(int ano){//verifica digitos de entrada do ano
+int entrada(int ano){//verifica digitos de entrada do ano é valido
 	
 	int x,i,date, anodig[TAM]= { }, resto[TAM] = { }, cont=0;
 	
@@ -71,31 +69,26 @@ int entrada(int ano){//verifica digitos de entrada do ano
 		cont++;
        }	
       
-	}else{
+	}else
 	    cont=0;
-    }
     
-	return cont;
+    
+  return cont;
 }
 
 
 
-int bissexto(int ano, int mes, int dia){
+int bissexto(int ano){
 	
   int status;
   
-   if(((ano%4)==0) && ((ano%100)!=0)||(ano%400)==0){
+   if(((ano%4)==0) && ((ano%100)!=0)||(ano%400)==0)
    	 //verificação do ano bissexto
    	   	 status = 1;
-	 
-   }else {
-     	
+   else 
       	status = 0;	
       
-   }
-   
-
-return status;
+  return status;
 }
 
 
@@ -105,22 +98,22 @@ int fevereiro(int ano, int mes, int dia, int status){
    	
    	 switch(status){
    		case 1:{ 
-		   		 if(dia > 0 && dia < 29){
+		   		 if(dia > 0 && dia < 29)
        				printf("\nA data %d/%d/%d e valida \n",dia, mes, ano);
-			    }else if (dia == 29) {
+			     else if (dia == 29) 
 			    	printf("\nAno bissexto \n A data %d/%d/%d e valida \n",dia, mes, ano);	
-				}else{
+				 else
                  	printf("\nO dia nao e correspondente ao mes\n");
-				}
+				
 			 	break;
 			   }
 			   
    		case 0:{
-		   		 if (dia > 0 && dia <= 28){
+		   		 if (dia > 0 && dia <= 28)
                  	printf("\nA data %d/%d/%d e valida \n",dia, mes, ano);
-                 }else {
+                 else 
                  	printf("\nO dia nao e correspondente ao mes \n");
-				 }
+				 
 			    break;
 		       }
 	 }
@@ -140,11 +133,11 @@ int mes31(int ano, int mes, int dia){
 	case 8: 
 	case 10: 
 	case 12:{  		
-    		  if (dia > 0 && dia <= 31){
+    		  if (dia > 0 && dia <= 31)
       			 printf("\nA data %d/%d/%d e valida \n", dia,mes, ano);
-   			  }else {
+   			  else
        			printf("\nO dia nao e correspondente ao mes \n");
-     		  }
+     		  
      		 
 			  break;
   			}
@@ -161,11 +154,11 @@ int mes30(int ano, int mes, int dia){
 	case 6: 
 	case 9: 
 	case 11:{
-			  if (dia > 0 && dia <= 30){
+			  if (dia > 0 && dia <= 30)
      	 		 printf("\nA data %d/%d/%d e valida \n", dia, mes, ano);
-     		  }else {
+     		  else 
      			 printf("\nO dia nao e  correspondente ao mes \n");
-     		  }
+     		  
      		  
      		  break;
             }
@@ -173,4 +166,9 @@ int mes30(int ano, int mes, int dia){
   
 return 0;
 }
+
+
+
+
+
 
