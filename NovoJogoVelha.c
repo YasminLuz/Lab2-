@@ -15,8 +15,8 @@ void inicializa();
 void limpar();
 
 char matrix [3][3]={{' ',' ',' '},
-					{' ',' ',' '},
-					{' ',' ',' '},};												
+		   {' ',' ',' '},
+		   {' ',' ',' '},};												
 
 
 int main(){
@@ -25,8 +25,7 @@ int main(){
 	char nome1[MAX], nome2[MAX];
 	
 	printf("Ola!\n \n");
-	
-    printf("\nJogador 1:\t");
+	printf("\nJogador 1:\t");
 	gets(nome1);
 	fflush(stdin);	
 	printf("\nJogador 2:\t");
@@ -36,52 +35,65 @@ int main(){
 	sleep(1);
 	limpar();	
 
-	velha(nome1,nome2);
+	//velha(nome1,nome2);
 							
-	int jogadas = 1, vencedor = -1;
+	int jogadas = 1, vencedor = -1, vez = 0;
 	char novojogo;
 	
 	do{
 		//free(matrix);
 		inicializa();
-		 do{    
+		velha(nome1,nome2);
+		 do{   
+		      
 		       tabuleiro(matrix);
-					   
+
 			   pega_jogada1();
 			   
-			   tabuleiro(matrix);
+			   limpar();
+		       velha(nome1,nome2);
+		       tabuleiro(matrix);
+			   
 			   
 			   if(verifica_jogadas() == 1){
-				   vencedor = 1;
-				   break;
-		       }
-		       
-		       //	printf("JOGADASASS%d", jogadas); 
-			   if ((verifica_jogadas() != 1) && (jogadas == 6)){
-			   	    empate();
-					if(empate() == 1){
-						vencedor = 0;
-						break;
-					}
-			   }	
-			   	
+					   vencedor = 1;
+					   break;
+			   }
+			   
 			   pega_jogada2();
 			   
+			   limpar();
+		       velha(nome1,nome2);
+		       tabuleiro(matrix);
+		       
 			   if(verifica_jogadas() == 1){
-				   vencedor = 2;
-				   break;   
+					   vencedor = 2;
+					   break;   
 			   }
-			
+		
+			   if ((verifica_jogadas() != 1) && (jogadas == 6)){
+			   	  empate();
+				  if(empate() == 1){
+					vencedor = 0;
+					break;
+				  }
+			   }
+			   
+		       //	printf("JOGADASASS%d", jogadas); 
+			 	
+			   limpar();
+			   velha(nome1,nome2);
+		   	
 		    jogadas++;
 
 		  }while((jogadas<9));
 		  
-		  //tabuleiro(matrix);//para aparecer a última posição digitada
+	//para aparecer a Ãºltima posiÃ§Ã£o digitada
 
 		  if(vencedor==1)
-		  	printf("\nO jogador 1 venceu! Parabens, %s \n", nome1); 
+		  	printf("\nO jogador 1 venceu! Parabens, %s! \n", nome1); 
 		  else if (vencedor==2)
-		  	printf("\nO jogador 2 venceu! Parabens, %s \n", nome2); 
+		  	printf("\nO jogador 2 venceu! Parabens, %s! \n", nome2); 
 		  else
 		    printf("\nO jogo deu velha =( \n");
 
@@ -90,7 +102,7 @@ int main(){
 	   scanf("%s",&novojogo);
 	   
 	   limpar();
-       velha(nome1,nome2);
+    
 
 	}while((novojogo=='S')||(novojogo=='s'));
 	
@@ -137,7 +149,7 @@ int verifica_numero(int x){
 }
 
 
-int verifica_letra(char y){//De acordo com a letra, dá a posição em numero
+int verifica_letra(char y){//De acordo com a letra, dÃ¡ a posiÃ§Ã£o em numero
 	int z;
 	
   	switch(y){
@@ -246,7 +258,7 @@ void velha(char nome1[MAX],char nome2[MAX]){
 	
 	system("color 03");
 	printf("XOXOXOXOXOXOXOXOXOXXOXOXOXXOXOXOX  JOGO DA VELHA  XOXOXOXXOXOXOXXOXOXOXOXOXXOXOX \n\n");
-	printf("\t\t\t\t   %s VS.%s\n", nome1, nome2);
+	printf("\t\t\t\t  %s VS.%s\n", nome1, nome2);
 }
 
 
@@ -272,7 +284,6 @@ void inicializa(){
     	for(y = 0;y < 3; y++)
      		 matrix[x][y]= ' ';
 }
-
 
 
 
