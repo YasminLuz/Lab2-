@@ -3,11 +3,8 @@
 #define TAM 30
 
 /*
-Programa que o usuário informa quantas vezes um numero de K dígitos aparece em um número natural N
-
-
+Programa que oÂ usuÃ¡rioÂ informa quantas vezes um numero de K dÃ­gitos aparece em um nÃºmero natural N
 */
-
 
 int main(void){
 	char numero[TAM];
@@ -28,28 +25,21 @@ int main(void){
 	
 	tam_busca= strlen(busca);
 	
-	
-	printf("tam %d \n", tamanho);
-	printf("num %s \n", numero);
-	printf("bus %s \n\n", busca);
-
-
-	
 	 	
     //laco1:
 	for(;numero[x] !='\0'; x++){
-       printf("entrei fase 1 \n");
-	    if(busca[0] == numero[x]){
+      
+	    if(busca[0] == numero[x]){// compara primeiro numero com o do texto 
 	      	//inicial= x;
 	      	
      	 aux = x;
-		 printf("aquii\n");
+		 
 		    for(y = 0; y < tam_busca; y++){
-		      	printf("Entreiii\n");
+		      
 		      	
 			  	if(busca[y] == numero[aux]){
 				  cont++;
-				  printf("entrei com tudooo!!!11\n");
+				  
 				}else if(busca[y] != numero[aux+1]){ //nao armazena no contador se encontra apenas a primeira variavel igual, evitando conflito na contagem
 					cont = 0;
 				}
@@ -60,8 +50,7 @@ int main(void){
 		           cont2++;    
 		           cont = 0;		//reinicia o contador        	
 				} 
-		    }
-		    printf("sai e to voltando\n");
+		    } 
 		    
 	    } else
 	      continue;
@@ -74,14 +63,3 @@ int main(void){
 	
   return 0;	
 }
-
-/*
-
-	
-	if(cont == 0)
-		printf("O numero %s não aparece nenhuma %d vez",busca,cont);
-	else if (cont == 1)
-		printf("O numero %s não aparece nenhuma %d vez",busca,cont);
-	else if (cont > 1)	
-	printf("O numero %s aparece %d vezes",busca,cont);
-*/
