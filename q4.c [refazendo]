@@ -1,0 +1,103 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define LIMITE 250
+#define TAM 50
+
+/*
+Programa que o usuário informa um texto de até 250 caracteres e programa mostra quantas vezes a letra digitada aparece no texto	
+
+
+*/
+
+//http://www.clubedohardware.com.br/forums/topic/1184472-achar-palavra-em-uma-frasebusca-de-string-em-string/
+int main(void){
+	char texto[LIMITE],copia_t[LIMITE],copia_p[LIMITE];
+	char palavra[TAM]; 
+	int x = 0, y, z,k, aux = 0, cont = 0, copiacont = 0, cont2 = 0, tam_texto, tam_palavra;
+	
+	printf("\nTexto: ");
+	fgets(texto, 250, stdin);
+	
+	printf("\nPesquisar pela palavra: ");
+	scanf(" %[^\n]s",palavra);
+	
+	tam_texto = strlen(texto);
+	tam_palavra = strlen(palavra);
+	
+	printf("tam text %d \n", tam_texto);
+	printf("tam pal %d \n\n", tam_palavra);
+
+    char inicial[tam_texto], final[tam_texto];
+    
+    
+	for(z = 0; z < LIMITE ; z++){ ///uma especie de Ignore case sensitive
+		copia_t[z] = tolower(texto[z]);
+		copia_p[z] = tolower(palavra[z]);
+	}
+	
+	
+	  for(x; (x < tam_texto); x++){  //incrementador do texto e do indice do final
+        
+	      if(copia_p[0] == copia_t[x]){ //analisa a primeira letra da busca com o texto
+
+            aux = x; //nao altera o x em si, somente o seu auxiliar
+            
+		    for(y = 0; y < tam_palavra; y++){ //analisa o restante da palavra 
+
+			  	if(copia_p[y] == copia_t[aux]){ //letras iguais
+			  	  cont++; 
+		    	}
+		    	
+		     aux++;
+		     copiacont = cont;		     
+		        if (cont == tam_palavra){
+					cont2++;
+					cont = 0;		//reinicia o contador  
+				}
+		    }
+		    
+		    //inicio e fim de palavras	
+			for(k = 0;k<cont2 ;k++){
+							      
+		        if (tam_texto == tam_palavra){
+		           	inicial[k] = aux--; 
+				    final[k] = aux--; 
+				    
+				}else if(tam_palavra < tam_texto){
+					
+					if(copiacont == tam_palavra){
+						inicial[k] = aux; 
+					    final[k] = y;
+				    }
+					 
+				}else{
+					printf("Digite uma palavra menor que o texto"); break;
+				}  
+			}          	
+				
+			printf("%d", aux);
+		    x = aux; //x se torna o ultimo valor percorrido sem precisar voltar toda a frase
+		    
+		     
+		 }else
+		  continue;
+	  }
+	
+	   
+	  if (cont2 > 0){
+	  	
+	  	printf("\nA palavra /%s/ aparece %d vezes no texto \n\n", palavra,cont2);
+	  	
+	  	for(x = 0; x < cont2; x++){
+	  	  printf("Inicial:\t %d\n",inicial[x],
+			     "\nFinal:\t %d\n",final[x]);	
+		}
+		
+	  } else
+	    printf("\nA palavra /%s/ nao existe no texto \n", palavra);
+	  
+	  
+    return 0;
+}
+
