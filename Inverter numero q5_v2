@@ -4,13 +4,14 @@
 //Usando int para inverter numero
 
 main(){
-	int x, y, num = 0, primeira = 0;
+	int x, y = 0, z, num = 0, primeira = 0;
 	int armazena[TAM] = { };
     
     
     printf("Numero:\n");
     scanf("%d",&num);
     
+    //desintegrando a variavel
     for(x = 0;x < TAM;x++){  	
     	armazena[x]= num%10;
     	num = num/10;
@@ -20,12 +21,19 @@ main(){
     	 	 primeira = x +1; //pq x começa em 0
     	     break;
     	   }
-    	  }
-	}
+    	}
+     }
 	
-	printf("tam %d \n",primeira);
-	
-	for(y = 0; y < primeira; y++)
-		printf("%d", armazena[y]);
+	//refazendo a variavel
+	for (y = primeira; y >= 0; y++){
+             z = 1;
+    
+             num = armazena[y]*z;
+             z *= 10;  
+        }
+    
+    printf("%d", num); 
+//	for(y = 0; y < primeira; y++)
+	//	printf("%d", armazena[y]);
 	  
 }
