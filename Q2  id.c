@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -20,17 +19,20 @@ int mes31(dma data);
 
 
 
-int main(){
+int main(void){
 	
 	dma data, data2;
+	char d1[9], d2[9];
 		
 	printf("-------Calcula diferenca de data------- \n");
 	printf("       (calendario gregoriano) \n \n");
 	
 	//Entrada data 1
 	printf("Data inicial(dd/mm/aaaa): \t");
-	scanf(" %d/%d/%d",&data.dia,&data.mes,&data.ano);
+	gets(d1);
 	
+	sscanf(d1,"%d/%d/%d", &data.dia, &data.mes, &data.ano);
+      	 
       	 
 	//Analisando data 1
 	confere(data);
@@ -43,13 +45,15 @@ int main(){
       	 
 	//Entrada data 2	
 	printf("\nData final(dd/mm/aaaa): \t");
-	scanf(" %d/%d/%d",&data2.dia,&data2.mes,&data2.ano);
+	//scanf(" %d/%d/%d",&data2.dia,&data2.mes,&data2.ano);
+	gets(d2);
 	
+	sscanf(d2,"%d/%d/%d", &data2.dia, &data2.mes, &data2.ano);
     
     //Analisando data 2
 	confere(data2);
 	entrada(data2.ano);
-	bissexto(data2.ano); //verificaÁ„o de ano bissexto ou n„o bissexto
+	bissexto(data2.ano); //verifica√ß√£o de ano bissexto ou n√£o bissexto
     fevereiro(data2, bissexto(data2.ano));
     mes30(data2);
     mes31(data2);
@@ -82,7 +86,7 @@ void confere(dma data){
 }
 
 #define TAM 4
-int entrada(int ano){//verifica digitos de entrada do ano È valido
+int entrada(int ano){//verifica digitos de entrada do ano √© valido
 	
 	int x, i, date, anodig[TAM]= { }, resto[TAM] = { }, cont=0;
 	
@@ -196,7 +200,7 @@ int bissexto(int ano){
   int status;
   
    if((((ano%4)==0) && ((ano%100)!=0))||(ano%400)==0){
-   	 //verificaÁ„o do ano bissexto
+   	 //verifica√ß√£o do ano bissexto
    	   	return status = 1;
    }else {
         return status = 0;	
@@ -277,7 +281,6 @@ int mes30(dma data){
   
 return 0;
 }
-
 
 
 
