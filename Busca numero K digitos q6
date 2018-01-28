@@ -8,99 +8,56 @@ Programa que o usuário informa quantas vezes um numero de K dígitos aparece 
 
 
 int main(void){
-	unsigned int numero, busca;
-	int c_numero[TAM], c_busca[TAM];
-	int x = 0, y = 0, z = 0, k, aux, cont = 0, cont2 = 0, elemento_n, elemento_b, copiab;
+	char numero[TAM];
+	int x = 0, y, aux, cont = 0, cont2 = 0, tamanho, tam_busca;
 	
-	
+	//scanf("%*[^\n]"); limpar buffer de entrada
 	printf("Numero: ");
-	scanf("%d",&numero);
+	scanf(" %[^\n]s",numero);
 	
+	tamanho = strlen(numero);
+		
+    //fflush(stdin);//limpando
+    
+    char busca[TAM];
+    
 	printf("\nPesquisar pelo numero: ");
-	scanf("%d",&busca);
+	scanf(" %[^\n]s",busca);
 	
-	copiab= busca;
-    
-    
-	for(x; x < TAM ;x++){
-	  
-	  //desintegra numero	
-      c_numero[x]= numero%10;
-      numero = numero/10;
-      
-      if(numero < 10){
-    	   if(numero == 0){
-    	 	 elemento_n = x +1;
-			  break; //pq x começa em o
-    	   }
-      }
-    }  
-    
-    
-    for(y; y < TAM ;y++){
-      c_busca[y]= busca%10;
-      busca = busca/10;
-      
-      if(busca < 10){
-    	   if(busca == 0){
-    	 	 elemento_b = y +1; //pq x começa em o
-    	     break;
-    	   }
-      }
-	}
+	tam_busca= strlen(busca);
 	
-		 
-	for(z; z < elemento_n; z++){
-		
-		
-		if(c_busca[0] == c_numero[z]){// compara primeiro numero com o do texto 
-	      	//inicial= x;
+	for(;numero[x] !='\0'; x++){
+      
+	    if(busca[0] == numero[x]){// compara primeiro numero com o do texto 
 	      	
-     	  aux = z+1;
-     	  cont++;
-     	 
-        	for(k = 0; k < elemento_n; k++){ 
-					
-			  if(elemento_b == 1){
-			  		
-			     if (cont == elemento_b){
-		           	cont2++;    
-		           	cont = 0;		//reinicia o contador        	
-			     }
-			    
-			    
-				 if(c_busca[0] == c_numero[aux]){
-				   	cont++;
-				  }
+     	 aux = x;
+		 
+		    for(y = 0; y < tam_busca; y++){
+		      
+		      	
+			  	if(busca[y] == numero[aux]){
+				  cont++;
 				  
-			   aux++;	
-			     
-			  }else{
+				}else if(busca[y] != numero[aux+1]){ //nao armazena no contador se encontra apenas a primeira variavel igual, evitando conflito na contagem
+					cont = 0;
+				}
+				
+			    aux++;
 			   
-			  		if(c_busca[k+1] == c_numero[aux])
-			    		cont++;
-					else if(c_busca[k+1] != c_numero[aux+1])
-					    cont=0;		
-
-
-			    	if (cont == elemento_b){
-		           		cont2++;    
-		           		cont = 0;		//reinicia o contador        	
-					}
-			   
-			   aux++;
-			  }
-			   	
+		        if (cont == tam_busca){
+		           cont2++;    
+		           cont = 0;		//reinicia o contador        	
+				} 
 		    } 
-	
+		    
 	    } else
 	      continue;
 		 
-		 //x++;
-	 	 z = aux;	//x se torna o ultimo valor percorrido sem precisar voltar toda o vetor	
+		 x++;
+	 	 x = aux;	//x se torna o ultimo valor percorrido sem precisar voltar toda a frase	
     }
 	
-	printf("\nO numero %d aparece %d vez(es)",copiab,cont2);
+	printf("\nO numero %s aparece %d vez(es)",busca,cont2);
 	
   return 0;	
 }
