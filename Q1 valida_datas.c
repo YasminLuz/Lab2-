@@ -1,5 +1,29 @@
+// #################################################
+//  Instituto Federal da Bahia
+//  Salvador - BA
+//  Curso de Análise e Desenvolvimento de Sistemas http://ads.ifba.edu.br
+//  Disciplina: INF029 - Laboratório de Programação
+//  Professor: Renato Novais - renato@ifba.edu.br
+
+//  ----- Orientações gerais -----
+//  Descrição: esse arquivo deve conter as questões do trabalho do aluno.
+//  Cada aluno deve renomear esse arquivo para Aluno<MATRICULA>.c
+//  O aluno deve preencher seus dados abaixo, e implementar as questões do trabalho
+
+//  ----- Dados do Aluno -----
+//  Nome:Yasmin Monique Luz dos Santos Oliveira
+//  email:yasmin.oliveira@ifba.edu.br
+//  Matrícula: 2017116031
+//  Semestre: 2
+
+//  Copyright © 2016 Renato Novais. All rights reserved.
+// Última atualização: 12/12/2017
+
+// #################################################
+
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 int entrada(int ano);
 int bissexto(int ano);
 int fevereiro (int ano, int mes, int dia, int status);
@@ -12,14 +36,29 @@ typedef struct{
    unsigned int dia, mes, ano;
 }dma;
 
-main(){
+
+int main(void){
 	
 	dma data;
+	char calender[9], *dd =  NULL, *mm = NULL, *aaaa = NULL;
 	
 	printf("-------Consulta de datas------- \n");
 	
 	printf("Data (dd/mm/aaaa): \n");
-	scanf(" %d/%d/%d",&data.dia,&data.mes,&data.ano);
+	gets(calender);
+	
+	    //separa string strtok ou sscanf(calender,"%d/%d/%d", &data.dia, &data.mes, &data.ano);
+		dd = strtok(calender,"/"); //declaração string que deseja dividir e o delimitador que vai parar a pesquisa
+		
+		mm = strtok(NULL,"/");
+		
+		aaaa = strtok(NULL,"\0");
+	
+	    //conversao de string para inteiro
+		data.dia= atoi(dd);
+		data.mes= atoi(mm);
+		data.ano= atoi(aaaa);
+		
 		
 	if(data.dia > 31 || data.dia < 1)
 	   printf("\nDigite um dia valido \n");
@@ -40,7 +79,8 @@ main(){
      	}
     
           system("pause");
-      
+          
+ return 0;
 }
 
 #define TAM 4
