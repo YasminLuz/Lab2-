@@ -149,7 +149,7 @@ void calculaid(dma data, dma data2){//calcula idade do individuo
 //	for(x=0; x<TAM; x++)	
 //		anos= ano[x]-data.ano;
 
-//https://br.answers.yahoo.com/question/index?qid=20131022125317AAY2FIv	
+
 	anos = data2.ano-data.ano;
     meses = data2.mes-data.mes;
 	
