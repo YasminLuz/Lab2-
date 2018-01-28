@@ -4,7 +4,7 @@
 //Usando int para inverter numero
 
 main(){
-	int x, y, z = 1, num = 0, primeira = 0;
+	int x, y, z = 1, num = 0, primeira = 0 ;
 	int armazena[TAM] = { };
     
     
@@ -19,8 +19,6 @@ main(){
     	if(num < 10){
     	   if(num == 0){
     	 	 primeira = x +1; //pq x começa em o
-    	     //armazena[x]= 32;//espaço
-    	     //completa = num%10;
     	     break;
     	   }
     	}
@@ -33,6 +31,5 @@ main(){
              z*=10;  
     }
 
-   printf("%d \n", num);
-		
+   printf("%d \n", num);	
 }
