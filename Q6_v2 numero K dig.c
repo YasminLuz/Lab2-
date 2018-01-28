@@ -3,7 +3,7 @@
 #define TAM 30
 
 /*
-Programa que o usuário informa quantas vezes um numero de K dígitos aparece em um número natural N
+Programa que oÂ usuÃ¡rioÂ informa quantas vezes um numero de K dÃ­gitos aparece em um nÃºmero natural N
 */
 
 
@@ -12,7 +12,7 @@ int main(void){
 	int c_numero[TAM], c_busca[TAM];
 	int x = 0, y = 0, z = 0, k, aux, cont = 0, cont2 = 0, elemento_n, elemento_b, copiab;
 	
-	//scanf("%*[^\n]"); limpar buffer de entrada
+	
 	printf("Numero: ");
 	scanf("%d",&numero);
 	
@@ -20,8 +20,7 @@ int main(void){
 	scanf("%d",&busca);
 	
 	copiab= busca;
-
-    printf("BUSCA %d NUMERO%d \n", busca, numero);
+    
     
 	for(x; x < TAM ;x++){
 	  
@@ -32,12 +31,11 @@ int main(void){
       if(numero < 10){
     	   if(numero == 0){
     	 	 elemento_n = x +1;
-			  break; //pq x começa em o
+			  break; //pq x comeÃ§a em o
     	   }
       }
     }  
     
-    printf("ELEMENTO NUMERO %d \n", elemento_n);
     
     for(y; y < TAM ;y++){
       c_busca[y]= busca%10;
@@ -45,12 +43,11 @@ int main(void){
       
       if(busca < 10){
     	   if(busca == 0){
-    	 	 elemento_b = y +1; //pq x começa em o
+    	 	 elemento_b = y +1; //pq x comeÃ§a em o
     	     break;
     	   }
       }
 	}
-	printf("ELEMENTO busca %d \n", elemento_b);
 	
 		 
 	for(z; z < elemento_n; z++){
@@ -63,12 +60,8 @@ int main(void){
      	  cont++;
      	 
         	for(k = 0; k < elemento_n; k++){ 
-			
-			printf("K = %d\n",k);
 					
 			  if(elemento_b == 1){
-			  	printf("Entreii");
-			  	
 			  		
 			     if (cont == elemento_b){
 		           	cont2++;    
@@ -78,7 +71,6 @@ int main(void){
 			    
 				 if(c_busca[0] == c_numero[aux]){
 				   	cont++;
-				   	printf("contando");
 				  }
 				  
 			   aux++;	
@@ -89,8 +81,8 @@ int main(void){
 			    		cont++;
 					else if(c_busca[k+1] != c_numero[aux+1])
 					    cont=0;		
-			    	printf("cbusca = %d\n",c_busca[k]);	
-			    		
+
+
 			    	if (cont == elemento_b){
 		           		cont2++;    
 		           		cont = 0;		//reinicia o contador        	
@@ -98,10 +90,7 @@ int main(void){
 			   
 			   aux++;
 			  }
-			   printf("estoy aquii\n");
-			    
-			  
-				
+			   	
 		    } 
 	
 	    } else
@@ -115,14 +104,3 @@ int main(void){
 	
   return 0;	
 }
-
-/*
-
-	
-	if(cont == 0)
-		printf("O numero %s não aparece nenhuma %d vez",busca,cont);
-	else if (cont == 1)
-		printf("O numero %s não aparece nenhuma %d vez",busca,cont);
-	else if (cont > 1)	
-	printf("O numero %s aparece %d vezes",busca,cont);
-*/
