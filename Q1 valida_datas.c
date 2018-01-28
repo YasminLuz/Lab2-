@@ -1,26 +1,3 @@
-// #################################################
-//  Instituto Federal da Bahia
-//  Salvador - BA
-//  Curso de Análise e Desenvolvimento de Sistemas http://ads.ifba.edu.br
-//  Disciplina: INF029 - Laboratório de Programação
-//  Professor: Renato Novais - renato@ifba.edu.br
-
-//  ----- Orientações gerais -----
-//  Descrição: esse arquivo deve conter as questões do trabalho do aluno.
-//  Cada aluno deve renomear esse arquivo para Aluno<MATRICULA>.c
-//  O aluno deve preencher seus dados abaixo, e implementar as questões do trabalho
-
-//  ----- Dados do Aluno -----
-//  Nome:Yasmin Monique Luz dos Santos Oliveira
-//  email:yasmin.oliveira@ifba.edu.br
-//  Matrícula: 2017116031
-//  Semestre: 2
-
-//  Copyright © 2016 Renato Novais. All rights reserved.
-// Última atualização: 12/12/2017
-
-// #################################################
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -41,6 +18,7 @@ int main(void){
 	
 	dma data;
 	char calender[9], *dd =  NULL, *mm = NULL, *aaaa = NULL;
+	int datavalida;
 	
 	printf("-------Consulta de datas------- \n");
 	
@@ -60,25 +38,30 @@ int main(void){
 		data.ano= atoi(aaaa);
 		
 		
-	if(data.dia > 31 || data.dia < 1)
+	if(data.dia > 31 || data.dia < 1){
+	   datavalida = 0;
 	   printf("\nDigite um dia valido \n");
 
-	if(data.mes > 12 || data.mes < 1)
+	}
+	if(data.mes > 12 || data.mes < 1){
+	   datavalida = 0;
 	   printf("\nDigite um mes valido \n");
+	}
 	   			
-	if(entrada(data.ano)==0)
+	if(entrada(data.ano)==0){
+	  datavalida = 0;
 	  printf("\nDigite um ano valido \n");
 	  
-	else{
+	}else{
 
           bissexto(data.ano); //verificação de ano bissexto ou não bissexto
           fevereiro(data.ano, data.mes, data.dia, bissexto(data.ano));
      	  mes30(data.ano, data.mes, data.dia);
       	  mes31(data.ano, data.mes, data.dia);
-      	 
-     	}
+      	  
+    }
     
-          system("pause");
+          //system("pause");
           
  return 0;
 }
