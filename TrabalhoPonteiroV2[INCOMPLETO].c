@@ -21,7 +21,8 @@ int menu(void);
 int submenu(int i);
 void inicializa(no *vetor);
 int inserir(no *vetor);
-int vazia(aux* estrutura);
+void imprimeprincipal(no *vetor);
+//int vazia(aux* estrutura);
 void limpar();
 
 /*ajuda : https://www.vivaolinux.com.br/script/Vetor-de-lista
@@ -36,20 +37,21 @@ int main(void){
 	
 	inicializa(vetor);
 	   
-	int opc, opc2, cont = 0 , posicao = 0, tamanho = 0, num; 
+	int opc, opd, cont = 0 , posicao = 0, tamanho = 0, num; 
     
     do{
     	volta: opc = menu();
     
 		switch(opc){
 			
-			case 1:{ opc2 = submenu(1);
+			case 1:{    do{
+						    opc = submenu(1);
 						
-						switch(opc2){
+							switch(opc){
 								
 								case 1:{	if(cont <= TAM){//verifica a possibilidade de overflow na lista principal
 								
-											  digite: printf("Posicao estrutura principal[1-10]: ");
+											  digite: printf("\nPosicao estrutura principal[1-10]: ");
 									          scanf("%i",&posicao);
 									        
 									          posicao--;//de 0 a 9 programa
@@ -61,72 +63,109 @@ int main(void){
 											 											 	       			         
 										        if (vetor[posicao].qnt == -1){ //se não tiver estrutura auxiliar criada nessa posicao, faca
 										         
-										            vetor[posicao].qnt++;
+										            vetor[posicao].qnt++;//auxiliar criada e igual a -1
+										            printf("%d",vetor[posicao].qnt);
 											        cont++; 
 											        
 										            //fflush(stdin);
 										         	printf("Tamanho vetor: ");
 										         	scanf("%d", &vetor[posicao].capac);
-										         	
+										         	printf("CAPACID%d",vetor[posicao].capac);
 										         	vetor[posicao].vet2 = (aux *) malloc(tamanho * sizeof(aux));
 										         	//v2 = NULL;
 										           // vetor[posicao].p = v2;//aponta para primeira posicao da estrutura auxiliar
 										            printf("Lista criada!\n");
-										            //sleep(2);
+										            
+													sleep(2);//espera tempo pra ler e depois apagar
+										            limpar();
+										            goto volta;//volta ao menu principal
 									
 											    } else{
-												    printf("A lista ja foi criada!\n");
+												    printf("\nA lista ja foi criada!\n");
+												    sleep(2);
+										            limpar();
 											        goto volta;
 											 	}
 											 
-										    }else
-										        printf("O tamanho da lista foi atingido");
+										    }else{
+											       printf("\nO tamanho da lista foi atingido");
+											       sleep(2);
+										           limpar();
+										           goto volta;
+											}
 										     
-								        	limpar();
-											break;
+								        	//limpar();
+										 break;	
 										
 										}
 									
-								case 2:{ inserir(vetor);
-									
+								case 2:{ inserir(&vetor[0]);
+									      sleep(2);
+										  limpar();
+										  goto volta;
+									     
 										break;
 										}
 									
 										
-								case 3: goto volta; break;		
+								case 3: goto volta; 		
 								
 									
-								default:printf("Digite uma operacao valida!\n");break;	
+								default:printf("\nDigite uma operacao valida!\n");	
 							}
+							
+						}while(opc != 3);
 					}
 			    
 				   
-			case 2:{   opc2 = submenu(2);
+			case 2:{   do{
+							opc = submenu(2);
 						
-						switch(opc2){
-								
-								case 1:{
-										break;
-								       }
-								       
-                                case 2:{
-										break;
-								       }
-								
-								case 3:{
-										break;
-									   }
-								
-								case 4: goto volta; break;
-								
-								default:printf("Digite uma operacao valida!\n"); break;
-																       
-						}
-						
-			     		break;
+							switch(opc){
+									
+									case 1:{imprimeprincipal(vetor);
+											break;
+									       }
+									       
+	                                case 2:{
+											break;
+									       }
+									
+									case 3:{
+											break;
+										   }
+									
+									case 4: goto volta; 
+									
+									default:printf("Digite uma operacao valida!\n"); 
+																	       
+							}
+							
+			     		}while(opc != 4);
 				   }
 			
-			case 3:{ 
+			
+			case 3:{    do{
+							opc = submenu(3);
+						
+							switch(opc){
+								
+									case 1:{
+										
+											break;
+									       }
+									       
+	                                case 2:{
+											
+											break;
+									       }
+									
+									case 3:goto volta; 
+									
+							}
+				
+						}while(opc != 3);
+						
 						break;
 				   }
 			
@@ -147,7 +186,7 @@ int main(void){
     	
 	}while(opc != 5);
     
-    free(vetor);//para a lista sequencial
+    //free(vetor);//para a lista sequencial
 
 	return 1;
 }
@@ -158,22 +197,22 @@ int main(void){
 }
 
 
-int vazia(aux *vet){
-	
-	if(vet->prox == NULL)
-		return 1;
-	else
-		return 0;
-	
-}
+//int vazia(aux *vet){
+//	
+//	if(vet->prox == NULL)
+//		return 1;
+//	else
+//		return 0;
+//	
+//}
 
 
 void inicializa(no *vetor){
    int x;
    for(x = 0; x < TAM; x++){ //inicializa todas as posicoes de uma so vez
-     //vetor[x].capac = -1;
+     vetor[x].capac = -1;
    	 vetor[x].qnt = -1;
-  	 vetor[x].vet2=NULL;
+  	 vetor[x].vet2 = NULL;
   	// vetor[x].vet2.prox = NULL; 	
   	 
    }
@@ -183,40 +222,48 @@ void inicializa(no *vetor){
 int submenu(int i){
 	 int opc;
 	
-	if (i == 1){ //qual submenu exibir a partir das entradas
+	switch (i){ //qual submenu exibir a partir das entradas
 		
-		printf("\n1 - Criar lista \n"
-			   "2 - Inserir elemento \n"
-			   "3 - Excluir elemento\n"
-			   "4 - Voltar menu principal\n ");
+		case 1: {printf("\n   [1] Criar lista \n"
+			   "   [2] Inserir elemento \n"
+			   "   [3] Voltar menu principal\n ");
 		scanf("%i",&opc);
 		
-	}else if (i == 2){
-		
-		printf("\n1 - Todas as estruturas \n"
-			   "2 - Auxiliares ordenas \n"
-			   "3 - Todas as estruturas ordenadas\n"
-			   "4 - Voltar ao menu principal \n");
+		break;
+				}
+				
+	case 2:{printf("\n   [1] Todas as estruturas \n"
+			   "   [2] Auxiliares ordenas \n"
+			   "   [3] Todas as estruturas ordenadas\n"
+			   "   [4] Voltar ao menu principal \n");
 		scanf("%i",&opc);
 		
-	}else if (i == 3){
-		
-		printf("\n1 - Excluir elemento da lista auxiliar \n"
-			   "2 - Excluir da lista principal (apaga tudo) \n");
-		scanf("%i",&opc);
+		break;
 	}
 	
-	return opc;
-
+	case 3:{
+			
+		printf("\n   [1] Excluir elemento da lista auxiliar \n"
+			   "   [2] Excluir da lista principal (apaga tudo) \n"
+			   "   [3] Voltar ao menu principal");
+		scanf("%i",&opc);
+		
+		break;
+	}
+	}		
+return opc;
+	
 }
 
 
 int menu(void){
     int opc;
+    
+    printf("                          SIMULACAO ESTRUTURA DE DADOS                                   \n");
 	
-	printf("1 - Inserir elemento \n"
-	       "2 - Listar  \n"
-		   "3 - Excluir \n"
+	printf("1 - Inclusao \n"
+	       "2 - Listagem  \n"
+		   "3 - Exclusao \n"
 		   "4 - Aumentar tamanho aux \n"
 		   "5 - Sair\n ");
 	scanf("%i",&opc);
@@ -231,9 +278,26 @@ int menu(void){
  	
    	printf("\nPosicao principal para inserir: ");
 	scanf("%i", &pos);
+	
+	pos--;
+	
+	printf("QUANT%d\n",vetor[pos].qnt);
+	printf("CAPAC%d\n",vetor[pos].capac);
+	
+	if ((pos>9) || (pos<0)){  //leitura para usuario e de 1 a 10
+		printf("\nDigite um numero dentro da capacidade maxima/minima do vetor\n");
+		return 0;
+	}
 		
- 	if(vetor[pos].vet2 == NULL){
- 		
+	
+	if(vetor[pos].qnt == vetor[pos].capac){
+		printf("\nLista cheia!\n");
+		return 0;
+	}
+	
+		
+ 	if(vetor[pos].qnt == 0){//se tiver estrutura criada e for primeira entrada
+ 		fflush(stdin);
      	printf("\nNumero: ");
 		scanf("%i", &vetor[pos].vet2->valor);
 		vetor[pos].vet2->prox = NULL;
@@ -241,16 +305,29 @@ int menu(void){
 	    vetor[pos].qnt++;//ate chegar no tamanho declarado para a estrutura aux
 	    return 1;
 	    
-	} else{
+	} else if (vetor[pos].qnt > 0){
 		
 		printf("\nNumero: ");
 		scanf("%i", &vetor[pos].vet2->valor);
 		vetor[pos].vet2->prox = vetor[pos].vet2;//aponta para a antiga posicao
-	}
+		vetor[pos].qnt++;
+		
+	} else if (vetor[pos].qnt == -1){//se nao tiver aux criada nessa posicao, exiba a menssagem
 	
-	
-	if(vetor[pos].qnt == vetor[pos].capac){
-		printf("\nLista cheia!\n");
+		printf("Não existe estrutura criada nessa posicao");
 	}
- }
 
+ }
+ 
+void imprimeprincipal(no *vetor){
+	int x, y;
+	no aux[TAM];
+	//aux = (no *) malloc (TAM*sizeof(no));
+	
+	for(x =0 ; x <TAM; x++){
+		printf("vetor[%d]=%d \n ",x+1, vetor[x].qnt+1);
+		 for()// for(y = x, aux = vetor; aux[y].vet2->prox != NULL; y++,aux = aux[y].vet2->prox)
+			printf("vetor[%d]=d", vetor[x].vet2->valor);
+	}
+	
+}
