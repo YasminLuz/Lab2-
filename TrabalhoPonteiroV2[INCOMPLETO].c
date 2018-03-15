@@ -59,7 +59,7 @@ int main(void){
 												 	goto digite;
 												}		
 											 											 	       			         
-										        if (vetor[posicao].qnt == -1){ //se n„o tiver estrutura auxiliar criada nessa posicao, faca
+										        if (vetor[posicao].qnt == -1){ //se n√£o tiver estrutura auxiliar criada nessa posicao, faca
 										         
 										            vetor[posicao].qnt++;
 											        cont++; 
