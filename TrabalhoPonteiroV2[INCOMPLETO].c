@@ -31,10 +31,7 @@ int aumentar(no *vetor);
 int excluir(no *vetor);
 void limpar();
 
-/*ajuda : https://www.vivaolinux.com.br/script/Vetor-de-lista
-https://inf.ufes.br/~pdcosta/ensino/2012-2-estruturas-de-dados/slides/Aula9%28listas%29.pdf
-https://pt.stackoverflow.com/questions/150879/imprimir-lista-encadeada-em-c   de vetor para lista
-*/
+
 int main(void){
 	
 	//CRIA LISTA PRINCIPAL
