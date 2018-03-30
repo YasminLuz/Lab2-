@@ -27,10 +27,11 @@ void transformar(no *vetor, int x);
 void imprimirprincipal(no *vetor);
 void selectionsort( int *vetn, int soma);
 void ordenaraux(no *vetor, int tam, int i);
-int ordenartodos(no *vetor,int *tvet, int *nvet, int soma, int i, int y);
+int ordenartodos(no *vetor,int *tvet, int soma, int y, int i);
 int aumentar(no *vetor);
 int excluir(no *vetor, int pos,int exc);
 void limpar();
+
 
 int main(void){
 	//CRIA LISTA PRINCIPAL
@@ -133,40 +134,39 @@ int main(void){
 											break;
 									       }
 									
-									case 3:{int x = 0, soma = 0,cont = 0, y = -1;
+									case 3:{int x = 0, soma = 0,cont = 0, y = -1, i = 0;
 											no ini[TAM];
 											
-											for(x = 0; x < TAM; x++){
+											for(x = 0; x < TAM; x++){//conta quantas posicoes necessita para o grande vetor
 												if(vetor[x].qnt > 0)
 													soma += vetor[x].qnt;
 												else
 												  continue;	
 											}
 									        
-									        int *tvet = (int *) malloc(soma * sizeof(int));// vetozao
-									        int *nvet = (int*) malloc(soma * sizeof(int));
-									        
-									        for(x = 0; x < TAM; x++){
+									        int tvet[soma]; //vetor abriga todos
 									        
 									          for(y = 0; y < TAM; y++){	
 									          
-									        	    if(vetor[x].qnt > 0){									        		
-														ini[x].vet2 = (aux *) malloc(sizeof(aux)); //recebe estruturas aux
-														ini[x].vet2 = vetor[x].vet2;  
+									        	    if(vetor[y].qnt > 0){									        		
+														ini[y].vet2 = (aux *) malloc(sizeof(aux)); //recebe estruturas aux
+														ini[y].vet2 = vetor[y].vet2;  
 																												
-														ordenartodos(ini, tvet,nvet, soma, x, y);
-													//	y =ordenartodos(ini, tvet,nvet, soma, x, y);
-														y+=vetor[x].qnt;
-												    }
-												
+														ordenartodos(ini, tvet, soma, y, i);
+														
+												    }else{
+			  											cont++;//verifica se ja alcancou o final do laco com ela vazia
+													    continue;
+													}
+													
+													i +=vetor[y].qnt;//para nao perder antiga posicao
 											   }
 											   
-											   		if(vetor[x].qnt < 0)
-											    		cont++;//verifica se ja alcancou o final do laco
-									  		}  
-																								
-												 	if(cont == TAM)
-												   		printf("Nao tem elementos alocados nesse vetor\n");
+											  if(cont == TAM){
+										  		printf("Nao tem elementos alocados nesse vetor\n");
+										  		limpar();
+										  		goto volta;
+											  } 
 												   		
 											break;
 										   }
@@ -233,8 +233,16 @@ int main(void){
 
 
  void limpar(){
- 	sleep(1); //espera tempo pra usuario ler e depois apagar
-	system("cls");
+ 	//__unix__, __linux, __linux__,LINUX... 	
+	#ifdef __unix 
+		sleep(1); //espera tempo pra usuario ler e depois apagar
+		system("clear");
+	//_WIN64,WIN32...
+	#elif _WIN32
+		sleep(1); 
+		system("cls");
+	#endif
+	
 }
 
 
@@ -268,9 +276,9 @@ void liberar(no *vetor){
 
 int submenu(int i){
 	 int opc;
+		
 	
 	switch (i){ //qual submenu exibir a partir das entradas
-		
 		case 1: {	printf("\n  	 [1] Criar lista \n"
 				    "  	 [2] Inserir elemento \n"
 				    "   	 [3] Voltar menu principal\n ");
@@ -509,28 +517,30 @@ void ordenaraux(no *vetor, int tamanho, int i){
 }
 
 
-int ordenartodos(no *ini,int *tvet, int *nvet, int soma, int i, int y){
-	int z = 0, cont = 0;
+int ordenartodos(no *ini,int *tvet, int soma, int y, int i){
+	int z = 0, cont = 0; //i = 0, r = 0;
 	
 	if (soma > 0){
-				 
-	       while (ini[i].vet2 != NULL){
+		
+	//	for(i = 0; i< soma; i++){
+		
+	       while (ini[y].vet2 != NULL){
 	       			
-		           tvet[y] = ini[i].vet2->valor;
-		           nvet = tvet;
-//				   printf("     %d  ", nvet[y]);
-		           ini[i].vet2 = ini[i].vet2->prox;
-		           y++;
+		           tvet[i] = ini[y].vet2->valor; //índices diferentes: i para acrescentar ao no vetor formado e y para mudar de acordo com o for do submenu
+				   //printf("  TVET[%d]=%d  ",i, tvet[i]);
+		           ini[y].vet2 = ini[y].vet2->prox;
+		           i++;
+				   
 			}
-			// y++;
-			
-			if(y >= soma){
-			    selectionsort(nvet, soma);			
-				while(z < soma){//para nao imprimir todas as vezes que entra na funcao
-					printf("  %d|",nvet[z++]);
-				}
+             
+			if(i >= soma){
+			   selectionsort(tvet, soma);			
+				for(z = 0; z < soma; z++)
+					printf("  %d|",tvet[z]);
+				
+				
 			}
-			return y;
+			return i;
 	}
 				
 }
@@ -588,4 +598,3 @@ int excluir(no *vetor, int pos, int exc){
 	
 	return 1;
 }
-	
