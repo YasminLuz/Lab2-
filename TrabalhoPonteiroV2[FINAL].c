@@ -549,7 +549,7 @@ int ordenartodos(no *ini,int *tvet, int soma, int y, int i){
 int excluir(no *vetor, int pos, int exc){
 	int cont = 0;
 	no anterior[TAM];
-	no busca[1];
+	no busca[pos];
 	no elimine[TAM];
 		
 	if(tamanho(vetor, pos) == 0){
@@ -557,7 +557,7 @@ int excluir(no *vetor, int pos, int exc){
 	}
 	
 	elimine[pos].vet2 = (aux *) malloc(sizeof(aux));
-	busca[pos].vet2 = (aux *) malloc(vetor[pos].qnt*sizeof(aux));
+	busca[pos].vet2 = (aux *) malloc(vetor[pos].qnt * sizeof(aux)); //recebe elementos daquela posicao
 	busca[pos].vet2 = vetor[pos].vet2; 
 	
 	if(busca[pos].qnt > 0){// se a lista nao estiver vazia
@@ -571,11 +571,13 @@ int excluir(no *vetor, int pos, int exc){
 		     if(busca[pos].vet2->valor == exc){
 		     	
 		        if(busca[pos].vet2->valor == vetor[pos].vet2->valor){//se igual a inicio
-			  	   vetor[pos].vet2->prox = busca[pos].vet2->prox;
+			  	   //vetor[pos].vet2->prox = busca[pos].vet2->prox;
 			  	   elimine[pos].vet2 = busca[pos].vet2;
-			  	 }else
-			  	   anterior[pos].vet2->prox = busca[pos].vet2->prox; 
-				     
+			  	 }else{
+			  	   anterior[pos].vet2->prox = busca[pos].vet2->prox; //
+				   elimine[pos].vet2 = busca[pos].vet2;
+				 }
+				 
 				free(elimine[pos].vet2);
 				printf("Removido \n");
 				break;
