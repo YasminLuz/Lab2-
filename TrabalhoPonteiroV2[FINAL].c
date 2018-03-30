@@ -507,7 +507,7 @@ void ordenaraux(no *vetor, int tamanho, int i){
 				printf("   %d",nvet[x]);
 		
  	}else if (tamanho == 1)
-	  printf("\nVetor[%d] = %d\n",i+1, atual[i].vet2->valor);
+	  printf("\nVetor[%d] = \n     %d",i+1, atual[i].vet2->valor);
 	else
  	  printf("\nVetor[%d] = vazio\n", i+1);
  	
@@ -570,24 +570,27 @@ int excluir(no *vetor, int pos, int exc){
 			
 		     if(busca[pos].vet2->valor == exc){
 		     	
-		        if(busca[pos].vet2->valor == vetor[pos].vet2->valor){//se igual a inicio
-			  	   //vetor[pos].vet2->prox = busca[pos].vet2->prox;
+		         if(busca[pos].vet2->valor == vetor[pos].vet2->valor){//se igual a inicio
+			  	   vetor[pos].vet2->prox = busca[pos].vet2->prox ;
 			  	   elimine[pos].vet2 = busca[pos].vet2;
+			  	   
 			  	 }else{
-			  	   anterior[pos].vet2->prox = busca[pos].vet2->prox; //
+			  	   anterior[pos].vet2->prox = busca[pos].vet2->prox; 
 				   elimine[pos].vet2 = busca[pos].vet2;
 				 }
 				 
 				free(elimine[pos].vet2);
+				vetor[pos].qnt--;
 				printf("Removido \n");
 				break;
 				
-		      } else{
-		      cont++;	
-			  }
+		      } else
+		      	cont++;	
+			  
 			  
 			  anterior[pos].vet2 = busca[pos].vet2;
 	          busca[pos].vet2= busca[pos].vet2->prox;
+	         // vetor[pos] = busca[pos];
 		}
 
 
@@ -596,7 +599,8 @@ int excluir(no *vetor, int pos, int exc){
 	    	return 0;
 		}
 		  
-	}
+	}else
+	   printf("Lista vazia");
 	
 	return 1;
-}
+}	
