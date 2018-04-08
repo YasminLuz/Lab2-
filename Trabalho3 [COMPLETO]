@@ -65,7 +65,7 @@ int main(void){
 												 	goto digite;
 												}	
 																						 	       			         
-										        if (vetor[posicao].qnt == -1){ //se não tiver estrutura auxiliar criada nessa posicao, faca
+										        if (vetor[posicao].qnt == -1){ //se nÃ£o tiver estrutura auxiliar criada nessa posicao, faca
 										         
 										            vetor[posicao].qnt++;//auxiliar criada e igual a 0
 											        cont++; 
@@ -412,7 +412,7 @@ void transformar(no *vetor, int x){ //transforma lista em vetor e facilitar busc
 	int y = 0, tam = vetor[x].qnt;
 	
 	no novo[TAM]; //vetor auxiliar para receber referencia do primeiro valor da estrutura
-	novo[x].vet2 = (aux *) malloc(tam * sizeof(aux)); //aloca espaço na posicao passada pelo parametro
+	novo[x].vet2 = (aux *) malloc(tam * sizeof(aux)); //aloca espaÃ§o na posicao passada pelo parametro
 	novo[x].vet2 = vetor[x].vet2;  
 	
 	int *tvet = (int*) malloc(tam * sizeof(int));//vetor criado com tamanho da capacidade da estrutura auxiliar
@@ -559,7 +559,7 @@ int ordenartodos(no *ini,int *tvet, int soma, int y, int i){
 		
 	       while (ini[y].vet2 != NULL){
 	       			
-		           tvet[i] = ini[y].vet2->valor; //índices diferentes: i para acrescentar ao no vetor formado e y para mudar de acordo com o for do submenu
+		           tvet[i] = ini[y].vet2->valor; //Ã­ndices diferentes: i para acrescentar ao no vetor formado e y para mudar de acordo com o for do submenu
 				   //printf("  TVET[%d]=%d  ",i, tvet[i]);
 		           ini[y].vet2 = ini[y].vet2->prox;
 		           i++;
@@ -701,16 +701,13 @@ int leituraarquivo(){
 		getchar();
 		return 0;
 	}
-	
-	//char c[200];
+
 	char c;
-	//c =  fgetc();
+	
 	while(!feof(arquivo)){
 		
 		c =  fgetc(arquivo);
 		printf("%c", c);
-	   //fgets(c, 100, arquivo);
-	   //printf ( "%s",c);
 
 	}	   
 	fclose(arquivo);
