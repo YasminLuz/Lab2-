@@ -1,0 +1,91 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#define LIMITE 250
+#define TAM 50
+
+/*
+Programa que o usuário informa um texto de até 250 caracteres e programa mostra  posicao inicial e final de todas as ocorrencias digitadas
+
+*/
+
+int main(void){
+	char texto[LIMITE],copia_t[LIMITE],copia_p[LIMITE];
+	char palavra[TAM]; 
+	int x = 0, y, z, k = 0, aux = 0, aux2 = 0, cont = 0, copiacont = 0, cont2 = 0, tam_texto, tam_palavra;
+	
+	printf("\nTexto: ");
+	fgets(texto, 250, stdin);
+	
+	printf("\nPesquisar pela palavra: ");
+	scanf(" %[^\n]s",palavra);
+	
+	tam_texto = strlen(texto);
+	tam_palavra = strlen(palavra);
+	
+	printf("tam text %d \n", tam_texto);
+	printf("tam pal %d \n\n", tam_palavra);
+
+    int inicial = 0, final = 0;
+    int c_inicial[30], c_final[30];
+    
+    
+	for(z = 0; z < LIMITE ;z++){ //Ignore case sensitive
+		copia_t[z] = tolower(texto[z]);
+		copia_p[z] = tolower(palavra[z]);
+	}
+	
+	
+	  for(x; (x < tam_texto);x++){  //incrementador do texto e do indice do final
+          
+	      if(copia_p[0] == copia_t[x]){ //analisa a primeira letra da busca com o texto
+
+            aux = x; //nao altera o x em si, somente o seu auxiliar
+            inicial = aux+1;
+            
+				
+		    for(y = 0; y < tam_palavra; y++){ //analisa o restante da palavra 
+				
+			  	if(copia_p[y] == copia_t[aux]){ //letras iguais
+			  	  cont++; 
+		    	}
+                		     
+		        if (cont == tam_palavra){
+					cont2++;
+					cont = 0;		//reinicia o contador 
+				}
+				
+				final = inicial+ y; 
+				
+				aux++;
+		    }
+		          					
+			if (aux2 < cont2){
+				c_inicial[k] = inicial;
+				c_final[k] = final;
+				k++;
+				aux2= cont2; //significa que contou mais uma palavra
+			}
+			
+		     x = aux;//x se torna o ultimo valor percorrido sem precisar voltar toda a frase
+		    
+		     
+		 }else
+		  continue;
+	  }
+	
+	  if (cont2 > 0){
+	  	
+	  	printf("\nA palavra /%s/ aparece %d vezes no texto \n\n", copia_p,cont2);
+	  	
+	  	for(z = 0; z < cont2; z++){
+	  	  printf("Inicial:%d\nFinal:%d\n\n",c_inicial[z],c_final[z]);	
+		}
+		
+	  } else
+	    printf("\nA palavra /%s/ nao existe no texto \n", palavra);
+	  
+	  
+    return 0;
+}
+

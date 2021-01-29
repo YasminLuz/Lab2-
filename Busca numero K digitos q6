@@ -1,0 +1,63 @@
+#include <stdio.h>
+#include <stdlib.h>
+#define TAM 30
+
+/*
+Programa que o usuário informa quantas vezes um numero de K dígitos aparece em um número natural N
+*/
+
+
+int main(void){
+	char numero[TAM];
+	int x = 0, y, aux, cont = 0, cont2 = 0, tamanho, tam_busca;
+	
+	//scanf("%*[^\n]"); limpar buffer de entrada
+	printf("Numero: ");
+	scanf(" %[^\n]s",numero);
+	
+	tamanho = strlen(numero);
+		
+    //fflush(stdin);//limpando
+    
+    char busca[TAM];
+    
+	printf("\nPesquisar pelo numero: ");
+	scanf(" %[^\n]s",busca);
+	
+	tam_busca= strlen(busca);
+	
+	for(;numero[x] !='\0'; x++){
+      
+	    if(busca[0] == numero[x]){// compara primeiro numero com o do texto 
+	      	
+     	 aux = x;
+		 
+		    for(y = 0; y < tam_busca; y++){
+		      
+		      	
+			  	if(busca[y] == numero[aux]){
+				  cont++;
+				  
+				}else if(busca[y] != numero[aux+1]){ //nao armazena no contador se encontra apenas a primeira variavel igual, evitando conflito na contagem
+					cont = 0;
+				}
+				
+			    aux++;
+			   
+		        if (cont == tam_busca){
+		           cont2++;    
+		           cont = 0;		//reinicia o contador        	
+				} 
+		    } 
+		    
+	    } else
+	      continue;
+		 
+		 x++;
+	 	 x = aux;	//x se torna o ultimo valor percorrido sem precisar voltar toda a frase	
+    }
+	
+	printf("\nO numero %s aparece %d vez(es)",busca,cont2);
+	
+  return 0;	
+}
